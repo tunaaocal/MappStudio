@@ -677,20 +677,7 @@ function ContactSection() {
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-5">
-            <span className="text-sm text-zinc-600">© 2026 Mapp Studio</span>
-            <div className="flex gap-4">
-              <a href="#" className="text-zinc-500 hover:text-white transition-colors duration-200" aria-label="Twitter">
-                <TwitterIcon />
-              </a>
-              <a href="#" className="text-zinc-500 hover:text-white transition-colors duration-200" aria-label="GitHub">
-                <GitHubIcon />
-              </a>
-              <a href="#" className="text-zinc-500 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
-                <LinkedInIcon />
-              </a>
-            </div>
-          </div>
+          <span className="text-sm text-zinc-600">© 2026 Mapp Studio</span>
         </div>
       </footer>
     </>
