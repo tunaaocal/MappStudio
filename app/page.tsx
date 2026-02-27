@@ -38,6 +38,9 @@ const projects = [
       "A beautiful workout tracker that gets out of your way and lets you focus on training.",
     colorFrom: "#7B2FFF",
     colorTo: "#00BFFF",
+    accent: "#7B2FFF",
+    tag: "1.2M Downloads",
+    screens: ["dashboard", "stats", "workout"],
   },
   {
     name: "Orbit",
@@ -47,6 +50,9 @@ const projects = [
       "Location-aware social discovery connecting people through shared interests and proximity.",
     colorFrom: "#FF2D78",
     colorTo: "#7B2FFF",
+    accent: "#FF2D78",
+    tag: "4.8 ★ App Store",
+    screens: ["feed", "map", "profile"],
   },
   {
     name: "Vault",
@@ -56,6 +62,9 @@ const projects = [
       "Personal finance made elegant. Budget, save, and invest from one unified dashboard.",
     colorFrom: "#00C896",
     colorTo: "#7B2FFF",
+    accent: "#00C896",
+    tag: "Top Finance App",
+    screens: ["balance", "chart", "cards"],
   },
 ];
 
@@ -160,59 +169,195 @@ function HamburgerIcon() {
 
 // ─── Components ───────────────────────────────────────────────────────────────
 
-function PhoneMockup() {
+// App-specific phone screens
+function PulseScreen() {
   return (
-    <div className="relative">
-      <div className="absolute inset-0 blur-3xl bg-[#7B2FFF]/15 rounded-full scale-75" />
-      <div
-        className="relative w-[260px] h-[540px] rounded-[40px] border-2 border-white/15 bg-[#0A0A0A] overflow-hidden"
-        style={{ boxShadow: "0 0 80px rgba(123,47,255,0.18)" }}
-      >
-        {/* Status bar */}
-        <div className="absolute top-0 inset-x-0 h-10 bg-black flex items-center justify-center">
-          <div className="w-20 h-5 bg-[#111] rounded-b-2xl" />
+    <div className="mt-10 px-3 py-3 flex flex-col gap-2.5">
+      {/* Header */}
+      <div className="flex items-center justify-between px-1 mb-1">
+        <div>
+          <div className="w-12 h-2 bg-white/30 rounded-full mb-1" />
+          <div className="w-20 h-3.5 bg-white/80 rounded-full" />
         </div>
+        <div className="w-9 h-9 rounded-full bg-[#7B2FFF]/30 border border-[#7B2FFF]/50 flex items-center justify-center">
+          <div className="w-4 h-4 rounded-full bg-[#7B2FFF]/70" />
+        </div>
+      </div>
+      {/* Heart rate card */}
+      <div className="rounded-2xl p-3 border border-white/8" style={{ background: "linear-gradient(135deg, rgba(123,47,255,0.35), rgba(0,191,255,0.2))" }}>
+        <div className="w-14 h-2 bg-white/40 rounded-full mb-2" />
+        <div className="text-white font-bold text-2xl leading-none mb-1" style={{ fontFamily: "monospace" }}>
+          <span className="opacity-90">142</span>
+          <span className="text-xs font-normal opacity-50 ml-1">bpm</span>
+        </div>
+        {/* Mini waveform */}
+        <svg viewBox="0 0 100 24" className="w-full h-6 mt-1">
+          <polyline points="0,12 10,12 15,4 20,20 25,12 35,12 40,6 45,18 50,12 60,12 65,3 70,21 75,12 85,12 90,7 95,17 100,12" fill="none" stroke="rgba(123,47,255,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+      {/* Stats row */}
+      <div className="grid grid-cols-3 gap-1.5">
+        {[["2.4k", "Steps"], ["380", "Cal"], ["6.2", "km"]].map(([v, l]) => (
+          <div key={l} className="rounded-xl bg-[#111] border border-white/5 py-2 flex flex-col items-center gap-0.5">
+            <span className="text-[#7B2FFF] text-sm font-bold leading-none">{v}</span>
+            <span className="text-white/30 text-[9px]">{l}</span>
+          </div>
+        ))}
+      </div>
+      {/* Workout list */}
+      {[["Morning Run", "32 min"], ["Strength", "45 min"], ["Yoga", "20 min"]].map(([name, dur]) => (
+        <div key={name} className="flex items-center gap-2.5 py-0.5">
+          <div className="w-8 h-8 rounded-xl flex-shrink-0" style={{ background: "linear-gradient(135deg, rgba(123,47,255,0.5), rgba(0,191,255,0.3))" }} />
+          <div className="flex-1">
+            <div className="w-full h-2 bg-white/25 rounded-full mb-1" />
+            <div className="w-10 h-1.5 bg-white/12 rounded-full" />
+          </div>
+          <div className="w-8 h-2 bg-white/15 rounded-full" />
+        </div>
+      ))}
+    </div>
+  );
+}
 
-        {/* App screen */}
-        <div className="mt-10 px-4 py-4 flex flex-col gap-3">
-          <div className="flex items-center justify-between mb-2">
-            <div className="w-16 h-3 bg-white/50 rounded-full" />
-            <div className="w-8 h-8 rounded-full bg-[#7B2FFF]/20 border border-[#7B2FFF]/40" />
-          </div>
-          <div
-            className="h-36 rounded-2xl border border-white/10 flex items-end p-4"
-            style={{ background: "linear-gradient(135deg, rgba(123,47,255,0.25), rgba(255,45,120,0.15))" }}
-          >
-            <div className="flex flex-col gap-1">
-              <div className="w-24 h-2.5 bg-white/60 rounded-full" />
-              <div className="w-16 h-2 bg-white/25 rounded-full" />
-            </div>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className="h-14 rounded-xl bg-[#111] border border-white/5 flex flex-col items-center justify-center gap-1"
-              >
-                <div className="w-8 h-3 bg-[#7B2FFF]/60 rounded-full" />
-                <div className="w-6 h-1.5 bg-white/20 rounded-full" />
-              </div>
-            ))}
-          </div>
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-3 py-1">
-              <div className="w-9 h-9 rounded-xl bg-[#111] border border-white/5 flex-shrink-0" />
-              <div className="flex flex-col gap-1 flex-1">
-                <div className="w-full h-2 bg-white/20 rounded-full" />
-                <div className="w-2/3 h-1.5 bg-white/10 rounded-full" />
-              </div>
-            </div>
+function OrbitScreen() {
+  return (
+    <div className="mt-10 px-3 py-3 flex flex-col gap-2.5">
+      {/* Header */}
+      <div className="flex items-center justify-between px-1 mb-1">
+        <div className="w-20 h-3.5 bg-white/80 rounded-full" />
+        <div className="flex gap-1.5">
+          <div className="w-7 h-7 rounded-full bg-[#FF2D78]/20 border border-[#FF2D78]/40" />
+          <div className="w-7 h-7 rounded-full bg-white/10 border border-white/10" />
+        </div>
+      </div>
+      {/* Map card */}
+      <div className="h-28 rounded-2xl relative overflow-hidden border border-white/8" style={{ background: "linear-gradient(135deg, rgba(255,45,120,0.2), rgba(123,47,255,0.25))" }}>
+        {/* Map grid lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <line x1="25" y1="0" x2="25" y2="100" stroke="white" strokeWidth="0.5"/>
+          <line x1="50" y1="0" x2="50" y2="100" stroke="white" strokeWidth="0.5"/>
+          <line x1="75" y1="0" x2="75" y2="100" stroke="white" strokeWidth="0.5"/>
+          <line x1="0" y1="33" x2="100" y2="33" stroke="white" strokeWidth="0.5"/>
+          <line x1="0" y1="66" x2="100" y2="66" stroke="white" strokeWidth="0.5"/>
+        </svg>
+        {/* Location pins */}
+        <div className="absolute top-4 left-8 w-4 h-4 rounded-full bg-[#FF2D78] border-2 border-white/80" />
+        <div className="absolute top-8 right-10 w-3 h-3 rounded-full bg-[#7B2FFF] border-2 border-white/60" />
+        <div className="absolute bottom-5 left-12 w-3 h-3 rounded-full bg-white/60 border border-white/40" />
+      </div>
+      {/* People nearby */}
+      <div className="flex items-center gap-2 px-1">
+        <div className="flex -space-x-2">
+          {["#FF2D78", "#7B2FFF", "#00C896", "#FF8C00"].map((c) => (
+            <div key={c} className="w-7 h-7 rounded-full border-2 border-black" style={{ background: c }} />
           ))}
         </div>
+        <div className="w-20 h-2 bg-white/20 rounded-full" />
+      </div>
+      {/* Feed items */}
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="flex items-start gap-2.5">
+          <div className="w-8 h-8 rounded-full flex-shrink-0" style={{ background: `hsl(${i * 80 + 320}, 80%, 55%)` }} />
+          <div className="flex-1 pt-0.5">
+            <div className="w-full h-2 bg-white/25 rounded-full mb-1.5" />
+            <div className="w-4/5 h-1.5 bg-white/12 rounded-full mb-1.5" />
+            <div className="flex gap-2">
+              <div className="w-6 h-1.5 bg-[#FF2D78]/50 rounded-full" />
+              <div className="w-6 h-1.5 bg-white/15 rounded-full" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
+function VaultScreen() {
+  return (
+    <div className="mt-10 px-3 py-3 flex flex-col gap-2.5">
+      {/* Header */}
+      <div className="flex items-center justify-between px-1 mb-1">
+        <div>
+          <div className="w-10 h-2 bg-white/30 rounded-full mb-1" />
+          <div className="w-24 h-3.5 bg-white/80 rounded-full" />
+        </div>
+        <div className="w-8 h-8 rounded-full bg-[#00C896]/20 border border-[#00C896]/40" />
+      </div>
+      {/* Balance card */}
+      <div className="rounded-2xl p-3 border border-white/8" style={{ background: "linear-gradient(135deg, rgba(0,200,150,0.3), rgba(123,47,255,0.2))" }}>
+        <div className="w-12 h-1.5 bg-white/30 rounded-full mb-1" />
+        <div className="font-bold text-xl text-white mb-2 leading-none" style={{ fontFamily: "monospace" }}>
+          $24,891
+        </div>
+        {/* Mini bar chart */}
+        <div className="flex items-end gap-1 h-8">
+          {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
+            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 5 ? "#00C896" : "rgba(0,200,150,0.3)" }} />
+          ))}
+        </div>
+      </div>
+      {/* Quick stats */}
+      <div className="grid grid-cols-2 gap-1.5">
+        {[["Income", "+$3,240", "#00C896"], ["Spending", "-$1,180", "#FF2D78"]].map(([label, val, color]) => (
+          <div key={label} className="rounded-xl bg-[#111] border border-white/5 p-2.5">
+            <div className="w-10 h-1.5 bg-white/20 rounded-full mb-1.5" />
+            <div className="text-sm font-bold" style={{ color }}>{val}</div>
+          </div>
+        ))}
+      </div>
+      {/* Transactions */}
+      {[0, 1, 2, 3].map((i) => (
+        <div key={i} className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl flex-shrink-0 bg-[#111] border border-white/5" />
+          <div className="flex-1">
+            <div className="w-20 h-2 bg-white/25 rounded-full mb-1" />
+            <div className="w-12 h-1.5 bg-white/12 rounded-full" />
+          </div>
+          <div className="w-10 h-2 bg-white/20 rounded-full" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AppPhone({
+  screen,
+  colorFrom,
+  colorTo,
+  glowColor,
+  rotate = 0,
+  scale = 1,
+  zIndex = 0,
+}: {
+  screen: React.ReactNode;
+  colorFrom: string;
+  colorTo: string;
+  glowColor: string;
+  rotate?: number;
+  scale?: number;
+  zIndex?: number;
+}) {
+  return (
+    <div
+      className="relative flex-shrink-0"
+      style={{ transform: `rotate(${rotate}deg) scale(${scale})`, zIndex, transformOrigin: "bottom center" }}
+    >
+      <div
+        className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-60"
+        style={{ background: glowColor }}
+      />
+      <div
+        className="relative w-[200px] h-[420px] rounded-[34px] border border-white/15 bg-[#0A0A0A] overflow-hidden"
+        style={{ boxShadow: `0 0 60px ${glowColor}40` }}
+      >
+        {/* Dynamic status bar gradient */}
+        <div className="absolute top-0 inset-x-0 h-9 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.6)" }}>
+          <div className="w-16 h-4 rounded-b-xl" style={{ background: "rgba(0,0,0,0.8)" }} />
+        </div>
+        {screen}
         {/* Home indicator */}
-        <div className="absolute bottom-3 inset-x-0 flex justify-center">
-          <div className="w-24 h-1 bg-white/25 rounded-full" />
+        <div className="absolute bottom-2 inset-x-0 flex justify-center">
+          <div className="w-20 h-1 bg-white/20 rounded-full" />
         </div>
       </div>
     </div>
@@ -256,43 +401,109 @@ function Nav() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center bg-dot-grid overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(123,47,255,0.09),transparent)]" />
-      <div className="relative max-w-6xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
-        <div className="flex flex-col gap-6">
-          <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#7B2FFF]">
-            Mobile-First. World-Class.
-          </span>
-          <h1 className="text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] text-white">
-            We Build Apps <br />
-            <span className="text-gradient-accent">People</span>
-            <br />
-            Actually Use.
-          </h1>
-          <p className="text-lg text-zinc-400 max-w-md leading-relaxed">
-            Mapp Studio crafts iOS, Android, and cross-platform experiences that drive
-            engagement, retention, and real-world results.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-2">
-            <a
-              href="#work"
-              className="bg-[#7B2FFF] text-white font-semibold px-7 py-3.5 rounded-full
-                         hover:bg-[#9B4FFF] transition-colors duration-200"
-              style={{ boxShadow: "0 0 40px rgba(123,47,255,0.3)" }}
-            >
-              See Our Work
-            </a>
-            <a
-              href="#contact"
-              className="border border-white/20 text-white px-7 py-3.5 rounded-full
-                         hover:border-white/50 hover:bg-white/5 transition-all duration-200"
-            >
-              Get in Touch
-            </a>
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-dot-grid overflow-hidden px-6 py-24">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_40%,rgba(123,47,255,0.1),transparent)]" />
+
+      {/* Copy — centered */}
+      <div className="relative z-10 flex flex-col items-center text-center gap-5 mb-16">
+        <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#7B2FFF]">
+          Mobile-First. World-Class.
+        </span>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] text-white max-w-3xl">
+          We Build Apps <span className="text-gradient-accent">People</span> Actually Use.
+        </h1>
+        <p className="text-lg text-zinc-400 max-w-lg leading-relaxed">
+          Mapp Studio crafts iOS, Android, and cross-platform experiences that drive
+          engagement, retention, and real-world results.
+        </p>
+        <div className="flex flex-wrap gap-4 justify-center pt-1">
+          <a
+            href="#work"
+            className="bg-[#7B2FFF] text-white font-semibold px-7 py-3.5 rounded-full
+                       hover:bg-[#9B4FFF] transition-colors duration-200"
+            style={{ boxShadow: "0 0 40px rgba(123,47,255,0.3)" }}
+          >
+            See Our Work
+          </a>
+          <a
+            href="#contact"
+            className="border border-white/20 text-white px-7 py-3.5 rounded-full
+                       hover:border-white/50 hover:bg-white/5 transition-all duration-200"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+      {/* Three phones — fanned */}
+      <div className="relative z-10 flex items-end justify-center gap-0" style={{ height: "460px" }}>
+        {/* Left phone — Pulse */}
+        <div className="relative" style={{ transform: "rotate(-10deg) translateX(30px)", zIndex: 1 }}>
+          <div className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-50" style={{ background: "#7B2FFF" }} />
+          <div
+            className="relative w-[185px] h-[390px] rounded-[32px] border border-white/10 bg-[#0A0A0A] overflow-hidden"
+            style={{ boxShadow: "0 0 50px rgba(123,47,255,0.3)" }}
+          >
+            <div className="absolute top-0 inset-x-0 h-8 bg-black/60 flex items-center justify-center">
+              <div className="w-14 h-3.5 bg-black/80 rounded-b-xl" />
+            </div>
+            <PulseScreen />
+            <div className="absolute bottom-2 inset-x-0 flex justify-center">
+              <div className="w-16 h-1 bg-white/20 rounded-full" />
+            </div>
+          </div>
+          {/* App label */}
+          <div className="mt-3 flex flex-col items-center gap-1">
+            <span className="text-white/80 text-sm font-semibold">Pulse</span>
+            <span className="text-zinc-600 text-xs">Health & Fitness</span>
           </div>
         </div>
-        <div className="flex justify-center lg:justify-end">
-          <PhoneMockup />
+
+        {/* Center phone — Orbit (featured, largest) */}
+        <div className="relative" style={{ zIndex: 3 }}>
+          <div className="absolute inset-0 blur-3xl rounded-full scale-90 opacity-60" style={{ background: "#FF2D78" }} />
+          <div
+            className="relative w-[215px] h-[450px] rounded-[38px] border-2 border-white/15 bg-[#0A0A0A] overflow-hidden"
+            style={{ boxShadow: "0 0 80px rgba(255,45,120,0.25), 0 0 0 1px rgba(255,255,255,0.06)" }}
+          >
+            <div className="absolute top-0 inset-x-0 h-9 bg-black/60 flex items-center justify-center">
+              <div className="w-16 h-4 bg-black/80 rounded-b-xl" />
+            </div>
+            <OrbitScreen />
+            <div className="absolute bottom-2 inset-x-0 flex justify-center">
+              <div className="w-20 h-1 bg-white/25 rounded-full" />
+            </div>
+          </div>
+          {/* Featured badge */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FF2D78] text-white text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
+            Featured
+          </div>
+          <div className="mt-3 flex flex-col items-center gap-1">
+            <span className="text-white font-semibold">Orbit</span>
+            <span className="text-zinc-500 text-xs">Social Discovery</span>
+          </div>
+        </div>
+
+        {/* Right phone — Vault */}
+        <div className="relative" style={{ transform: "rotate(10deg) translateX(-30px)", zIndex: 1 }}>
+          <div className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-50" style={{ background: "#00C896" }} />
+          <div
+            className="relative w-[185px] h-[390px] rounded-[32px] border border-white/10 bg-[#0A0A0A] overflow-hidden"
+            style={{ boxShadow: "0 0 50px rgba(0,200,150,0.25)" }}
+          >
+            <div className="absolute top-0 inset-x-0 h-8 bg-black/60 flex items-center justify-center">
+              <div className="w-14 h-3.5 bg-black/80 rounded-b-xl" />
+            </div>
+            <VaultScreen />
+            <div className="absolute bottom-2 inset-x-0 flex justify-center">
+              <div className="w-16 h-1 bg-white/20 rounded-full" />
+            </div>
+          </div>
+          <div className="mt-3 flex flex-col items-center gap-1">
+            <span className="text-white/80 text-sm font-semibold">Vault</span>
+            <span className="text-zinc-600 text-xs">Personal Finance</span>
+          </div>
         </div>
       </div>
     </section>
