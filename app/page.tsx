@@ -1,3 +1,5 @@
+import React from "react";
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const navLinks = ["Work", "Services", "About", "Contact"];
@@ -543,6 +545,7 @@ function ServicesSection() {
 }
 
 function PortfolioSection() {
+  const [pulse, orbit, vault] = projects;
   return (
     <section id="work" className="py-32 px-6 border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto">
@@ -554,57 +557,122 @@ function PortfolioSection() {
             Apps That Perform
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {projects.map((project) => (
-            <div
-              key={project.name}
-              className="group rounded-2xl bg-[#0A0A0A] border border-white/[0.06]
-                         hover:border-white/20 overflow-hidden transition-all duration-300"
-            >
-              <div
-                className="h-52 relative overflow-hidden"
-                style={{
-                  background: `linear-gradient(135deg, ${project.colorFrom}22, ${project.colorTo}22)`,
-                }}
+
+        {/* Featured row: Pulse */}
+        <div
+          className="group rounded-3xl border border-white/[0.06] overflow-hidden mb-5
+                     hover:border-white/15 transition-all duration-300"
+          style={{ background: `linear-gradient(135deg, rgba(123,47,255,0.08), rgba(0,191,255,0.04))` }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Text side */}
+            <div className="flex flex-col justify-center p-10 lg:p-14">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                  {pulse.category}
+                </span>
+                <span className="w-1 h-1 rounded-full bg-zinc-700" />
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/5 text-zinc-400 border border-white/[0.06]">
+                  {pulse.platform}
+                </span>
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full border text-[#7B2FFF] border-[#7B2FFF]/30 bg-[#7B2FFF]/10">
+                  {pulse.tag}
+                </span>
+              </div>
+              <h3 className="text-5xl font-bold tracking-tighter text-white mb-4">{pulse.name}</h3>
+              <p className="text-zinc-400 leading-relaxed mb-8 text-lg max-w-sm">{pulse.description}</p>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white
+                           bg-white/8 border border-white/10 px-5 py-2.5 rounded-full w-fit
+                           hover:bg-white/15 hover:border-white/20 transition-all duration-200"
               >
+                View Case Study <span>→</span>
+              </a>
+            </div>
+            {/* Phone side */}
+            <div
+              className="relative flex items-end justify-center pt-10 min-h-[400px] overflow-hidden"
+              style={{ background: `linear-gradient(135deg, rgba(123,47,255,0.12), rgba(0,191,255,0.06))` }}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_80%,rgba(123,47,255,0.15),transparent)]" />
+              <div className="relative" style={{ transform: "translateY(20px)" }}>
+                <div className="absolute inset-0 blur-3xl opacity-50 rounded-full scale-75" style={{ background: "#7B2FFF" }} />
                 <div
-                  className="absolute -top-4 -right-4 w-24 h-24 rounded-full blur-2xl opacity-25"
-                  style={{ background: project.colorFrom }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className="w-20 h-36 rounded-[14px] border border-white/10 bg-black/60
-                                flex flex-col items-center justify-center gap-2 px-2"
-                  >
-                    <div className="w-full h-2 bg-white/20 rounded-full" />
-                    <div className="w-3/4 h-1.5 bg-white/10 rounded-full" />
-                    <div
-                      className="mt-1 w-10 h-10 rounded-xl"
-                      style={{
-                        background: `linear-gradient(135deg, ${project.colorFrom}, ${project.colorTo})`,
-                      }}
-                    />
+                  className="relative w-[230px] h-[480px] rounded-[40px] border border-white/15 bg-[#0A0A0A] overflow-hidden"
+                  style={{ boxShadow: "0 0 80px rgba(123,47,255,0.3)" }}
+                >
+                  <div className="absolute top-0 inset-x-0 h-9 bg-black/60 flex items-center justify-center">
+                    <div className="w-16 h-4 bg-black/80 rounded-b-xl" />
+                  </div>
+                  <PulseScreen />
+                  <div className="absolute bottom-2 inset-x-0 flex justify-center">
+                    <div className="w-20 h-1 bg-white/25 rounded-full" />
                   </div>
                 </div>
               </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
+            </div>
+          </div>
+        </div>
+
+        {/* Orbit + Vault side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {[orbit, vault].map((project) => (
+            <div
+              key={project.name}
+              className="group rounded-3xl border border-white/[0.06] overflow-hidden
+                         hover:border-white/15 transition-all duration-300"
+              style={{ background: `linear-gradient(135deg, ${project.colorFrom}0A, ${project.colorTo}05)` }}
+            >
+              {/* Phone preview area */}
+              <div
+                className="relative h-72 flex items-end justify-center overflow-hidden"
+                style={{ background: `linear-gradient(160deg, ${project.colorFrom}14, ${project.colorTo}08)` }}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_80%,rgba(0,0,0,0.2),transparent)]" />
+                <div
+                  className="absolute top-3 right-3 w-16 h-16 rounded-full blur-2xl opacity-40"
+                  style={{ background: project.colorFrom }}
+                />
+                <div className="relative pb-0" style={{ transform: "translateY(16px)" }}>
+                  <div
+                    className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-50"
+                    style={{ background: project.colorFrom }}
+                  />
+                  <div
+                    className="relative w-[175px] h-[360px] rounded-[30px] border border-white/12 bg-[#0A0A0A] overflow-hidden"
+                    style={{ boxShadow: `0 0 60px ${project.colorFrom}50` }}
+                  >
+                    <div className="absolute top-0 inset-x-0 h-8 bg-black/60 flex items-center justify-center">
+                      <div className="w-12 h-3.5 bg-black/80 rounded-b-xl" />
+                    </div>
+                    {project.name === "Orbit" ? <OrbitScreen /> : <VaultScreen />}
+                    <div className="absolute bottom-2 inset-x-0 flex justify-center">
+                      <div className="w-14 h-1 bg-white/20 rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Text */}
+              <div className="p-7">
+                <div className="flex items-center gap-2 mb-4">
                   <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
                     {project.category}
                   </span>
+                  <span className="w-1 h-1 rounded-full bg-zinc-700" />
                   <span
-                    className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/5
-                                text-zinc-400 border border-white/[0.06]"
+                    className="text-xs font-medium px-2 py-0.5 rounded-full border"
+                    style={{ color: project.accent, borderColor: `${project.accent}40`, background: `${project.accent}12` }}
                   >
-                    {project.platform}
+                    {project.tag}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
-                <p className="text-sm text-zinc-400 leading-relaxed mb-5">{project.description}</p>
+                <h3 className="text-3xl font-bold tracking-tighter text-white mb-2">{project.name}</h3>
+                <p className="text-zinc-400 leading-relaxed text-sm mb-5">{project.description}</p>
                 <a
                   href="#"
-                  className="text-sm font-medium text-[#7B2FFF] hover:text-white transition-colors duration-200
-                             flex items-center gap-2"
+                  className="text-sm font-medium flex items-center gap-2 transition-colors duration-200"
+                  style={{ color: project.accent }}
                 >
                   View Case Study <span>→</span>
                 </a>
@@ -733,8 +801,8 @@ export default function Home() {
     <main className="bg-black text-white overflow-x-hidden">
       <Nav />
       <HeroSection />
-      <ServicesSection />
       <PortfolioSection />
+      <ServicesSection />
       <AboutSection />
       <ContactSection />
     </main>
