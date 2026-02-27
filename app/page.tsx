@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -33,47 +34,59 @@ const services = [
 
 const projects = [
   {
-    name: "Pulse",
-    category: "Health & Fitness",
+    name: "Potential Analyzer",
+    subtitle: "MAX AI",
+    category: "Lifestyle & AI",
     platform: "iOS",
     description:
-      "A beautiful workout tracker that gets out of your way and lets you focus on training.",
-    colorFrom: "#7B2FFF",
-    colorTo: "#00BFFF",
-    accent: "#7B2FFF",
-    tag: "1.2M Downloads",
-    screens: ["dashboard", "stats", "workout"],
+      "Discover your true potential with AI-powered face symmetry and personality analysis. See how you measure up.",
+    colorFrom: "#DD0000",
+    colorTo: "#FF6666",
+    accent: "#DD0000",
+    icon: "/images/max-icon.png",
+    screenshot: "/images/max-screenshot.png",
+    released: true,
+    tag: "Available on App Store",
+    appStoreUrl: "https://apps.apple.com/us/app/potential-analyzer-ai/id6757166626?ppid=0f0ffa50-24d6-4cc6-b026-7654298a6906",
   },
   {
-    name: "Orbit",
-    category: "Social",
-    platform: "iOS & Android",
+    name: "Wardrobe AI",
+    subtitle: "Outfit Maker",
+    category: "Fashion & AI",
+    platform: "iOS",
     description:
-      "Location-aware social discovery connecting people through shared interests and proximity.",
-    colorFrom: "#FF2D78",
-    colorTo: "#7B2FFF",
-    accent: "#FF2D78",
-    tag: "4.8 ★ App Store",
-    screens: ["feed", "map", "profile"],
+      "Your personal AI stylist. Get daily outfit suggestions tailored to your wardrobe and try on looks instantly.",
+    colorFrom: "#FF3A5C",
+    colorTo: "#FF8FAA",
+    accent: "#FF3A5C",
+    icon: "/images/wardrobe-icon.png",
+    screenshot: "/images/wardrobe-screenshot.png",
+    released: true,
+    tag: "Available on App Store",
+    appStoreUrl: "https://apps.apple.com/us/app/wardrobe-ai-outfit-maker/id6752615624?ppid=b667d076-f3bd-4a28-a832-2868ad586112",
   },
   {
-    name: "Vault",
-    category: "Finance",
-    platform: "Cross-Platform",
+    name: "Dog Translator",
+    subtitle: "Woofy",
+    category: "Pets & Fun",
+    platform: "iOS",
     description:
-      "Personal finance made elegant. Budget, save, and invest from one unified dashboard.",
-    colorFrom: "#00C896",
-    colorTo: "#7B2FFF",
-    accent: "#00C896",
-    tag: "Top Finance App",
-    screens: ["balance", "chart", "cards"],
+      "Translate your dog's barks and speak their language. A fun and playful experience for the whole family.",
+    colorFrom: "#FD7C02",
+    colorTo: "#FFB347",
+    accent: "#FD7C02",
+    icon: null,
+    screenshot: "/images/dog-screenshot.png",
+    released: false,
+    tag: "Coming Soon",
+    appStoreUrl: null,
   },
 ];
 
 const stats = [
-  { value: "50+", label: "Apps Launched" },
-  { value: "8M+", label: "Users Reached" },
-  { value: "4.9", label: "Avg App Store Rating" },
+  { value: "3", label: "Apps Launched" },
+  { value: "500K+", label: "Downloads" },
+  { value: "4.8", label: "Avg App Store Rating" },
 ];
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
@@ -89,6 +102,14 @@ function LogoMark() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  );
+}
+
+function AppleIcon() {
+  return (
+    <svg width="12" height="14" viewBox="0 0 814 1000" fill="currentColor">
+      <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.4C46 790.7 0 663.5 0 541.8c0-207.4 135.4-316.9 269-316.9 70.1 0 128.4 46.4 172.5 46.4 42.8 0 109.1-49 192.5-49 30.8 0 133.7 2.6 198.8 99.2zM554 161.1c29.2-35.2 50.1-83.8 50.1-132.4 0-6.4-.6-13.3-1.9-18.5-47.7 1.9-104.6 31.4-138.4 70.5-26.3 30.8-51.3 79.3-51.3 128.6 0 7.1.6 14.2 1.9 20.7 3.8.6 10.3 1.9 16.8 1.9 43.4 0 97-28.5 122.8-70.8z"/>
     </svg>
   );
 }
@@ -159,6 +180,19 @@ function LinkedInIcon() {
   );
 }
 
+function AppStoreBadge({ href = "#" }: { href?: string }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex w-fit hover:opacity-80 transition-opacity duration-200">
+      <Image
+        src="/images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg"
+        alt="Download on the App Store"
+        width={140}
+        height={47}
+      />
+    </a>
+  );
+}
+
 function HamburgerIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -170,201 +204,6 @@ function HamburgerIcon() {
 }
 
 // ─── Components ───────────────────────────────────────────────────────────────
-
-// App-specific phone screens
-function PulseScreen() {
-  return (
-    <div className="mt-10 px-3 py-3 flex flex-col gap-2.5">
-      {/* Header */}
-      <div className="flex items-center justify-between px-1 mb-1">
-        <div>
-          <div className="w-12 h-2 bg-white/30 rounded-full mb-1" />
-          <div className="w-20 h-3.5 bg-white/80 rounded-full" />
-        </div>
-        <div className="w-9 h-9 rounded-full bg-[#7B2FFF]/30 border border-[#7B2FFF]/50 flex items-center justify-center">
-          <div className="w-4 h-4 rounded-full bg-[#7B2FFF]/70" />
-        </div>
-      </div>
-      {/* Heart rate card */}
-      <div className="rounded-2xl p-3 border border-white/8" style={{ background: "linear-gradient(135deg, rgba(123,47,255,0.35), rgba(0,191,255,0.2))" }}>
-        <div className="w-14 h-2 bg-white/40 rounded-full mb-2" />
-        <div className="text-white font-bold text-2xl leading-none mb-1" style={{ fontFamily: "monospace" }}>
-          <span className="opacity-90">142</span>
-          <span className="text-xs font-normal opacity-50 ml-1">bpm</span>
-        </div>
-        {/* Mini waveform */}
-        <svg viewBox="0 0 100 24" className="w-full h-6 mt-1">
-          <polyline points="0,12 10,12 15,4 20,20 25,12 35,12 40,6 45,18 50,12 60,12 65,3 70,21 75,12 85,12 90,7 95,17 100,12" fill="none" stroke="rgba(123,47,255,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </div>
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-1.5">
-        {[["2.4k", "Steps"], ["380", "Cal"], ["6.2", "km"]].map(([v, l]) => (
-          <div key={l} className="rounded-xl bg-[#111] border border-white/5 py-2 flex flex-col items-center gap-0.5">
-            <span className="text-[#7B2FFF] text-sm font-bold leading-none">{v}</span>
-            <span className="text-white/30 text-[9px]">{l}</span>
-          </div>
-        ))}
-      </div>
-      {/* Workout list */}
-      {[["Morning Run", "32 min"], ["Strength", "45 min"], ["Yoga", "20 min"]].map(([name, dur]) => (
-        <div key={name} className="flex items-center gap-2.5 py-0.5">
-          <div className="w-8 h-8 rounded-xl flex-shrink-0" style={{ background: "linear-gradient(135deg, rgba(123,47,255,0.5), rgba(0,191,255,0.3))" }} />
-          <div className="flex-1">
-            <div className="w-full h-2 bg-white/25 rounded-full mb-1" />
-            <div className="w-10 h-1.5 bg-white/12 rounded-full" />
-          </div>
-          <div className="w-8 h-2 bg-white/15 rounded-full" />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function OrbitScreen() {
-  return (
-    <div className="mt-10 px-3 py-3 flex flex-col gap-2.5">
-      {/* Header */}
-      <div className="flex items-center justify-between px-1 mb-1">
-        <div className="w-20 h-3.5 bg-white/80 rounded-full" />
-        <div className="flex gap-1.5">
-          <div className="w-7 h-7 rounded-full bg-[#FF2D78]/20 border border-[#FF2D78]/40" />
-          <div className="w-7 h-7 rounded-full bg-white/10 border border-white/10" />
-        </div>
-      </div>
-      {/* Map card */}
-      <div className="h-28 rounded-2xl relative overflow-hidden border border-white/8" style={{ background: "linear-gradient(135deg, rgba(255,45,120,0.2), rgba(123,47,255,0.25))" }}>
-        {/* Map grid lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <line x1="25" y1="0" x2="25" y2="100" stroke="white" strokeWidth="0.5"/>
-          <line x1="50" y1="0" x2="50" y2="100" stroke="white" strokeWidth="0.5"/>
-          <line x1="75" y1="0" x2="75" y2="100" stroke="white" strokeWidth="0.5"/>
-          <line x1="0" y1="33" x2="100" y2="33" stroke="white" strokeWidth="0.5"/>
-          <line x1="0" y1="66" x2="100" y2="66" stroke="white" strokeWidth="0.5"/>
-        </svg>
-        {/* Location pins */}
-        <div className="absolute top-4 left-8 w-4 h-4 rounded-full bg-[#FF2D78] border-2 border-white/80" />
-        <div className="absolute top-8 right-10 w-3 h-3 rounded-full bg-[#7B2FFF] border-2 border-white/60" />
-        <div className="absolute bottom-5 left-12 w-3 h-3 rounded-full bg-white/60 border border-white/40" />
-      </div>
-      {/* People nearby */}
-      <div className="flex items-center gap-2 px-1">
-        <div className="flex -space-x-2">
-          {["#FF2D78", "#7B2FFF", "#00C896", "#FF8C00"].map((c) => (
-            <div key={c} className="w-7 h-7 rounded-full border-2 border-black" style={{ background: c }} />
-          ))}
-        </div>
-        <div className="w-20 h-2 bg-white/20 rounded-full" />
-      </div>
-      {/* Feed items */}
-      {[0, 1, 2].map((i) => (
-        <div key={i} className="flex items-start gap-2.5">
-          <div className="w-8 h-8 rounded-full flex-shrink-0" style={{ background: `hsl(${i * 80 + 320}, 80%, 55%)` }} />
-          <div className="flex-1 pt-0.5">
-            <div className="w-full h-2 bg-white/25 rounded-full mb-1.5" />
-            <div className="w-4/5 h-1.5 bg-white/12 rounded-full mb-1.5" />
-            <div className="flex gap-2">
-              <div className="w-6 h-1.5 bg-[#FF2D78]/50 rounded-full" />
-              <div className="w-6 h-1.5 bg-white/15 rounded-full" />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function VaultScreen() {
-  return (
-    <div className="mt-10 px-3 py-3 flex flex-col gap-2.5">
-      {/* Header */}
-      <div className="flex items-center justify-between px-1 mb-1">
-        <div>
-          <div className="w-10 h-2 bg-white/30 rounded-full mb-1" />
-          <div className="w-24 h-3.5 bg-white/80 rounded-full" />
-        </div>
-        <div className="w-8 h-8 rounded-full bg-[#00C896]/20 border border-[#00C896]/40" />
-      </div>
-      {/* Balance card */}
-      <div className="rounded-2xl p-3 border border-white/8" style={{ background: "linear-gradient(135deg, rgba(0,200,150,0.3), rgba(123,47,255,0.2))" }}>
-        <div className="w-12 h-1.5 bg-white/30 rounded-full mb-1" />
-        <div className="font-bold text-xl text-white mb-2 leading-none" style={{ fontFamily: "monospace" }}>
-          $24,891
-        </div>
-        {/* Mini bar chart */}
-        <div className="flex items-end gap-1 h-8">
-          {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
-            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 5 ? "#00C896" : "rgba(0,200,150,0.3)" }} />
-          ))}
-        </div>
-      </div>
-      {/* Quick stats */}
-      <div className="grid grid-cols-2 gap-1.5">
-        {[["Income", "+$3,240", "#00C896"], ["Spending", "-$1,180", "#FF2D78"]].map(([label, val, color]) => (
-          <div key={label} className="rounded-xl bg-[#111] border border-white/5 p-2.5">
-            <div className="w-10 h-1.5 bg-white/20 rounded-full mb-1.5" />
-            <div className="text-sm font-bold" style={{ color }}>{val}</div>
-          </div>
-        ))}
-      </div>
-      {/* Transactions */}
-      {[0, 1, 2, 3].map((i) => (
-        <div key={i} className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl flex-shrink-0 bg-[#111] border border-white/5" />
-          <div className="flex-1">
-            <div className="w-20 h-2 bg-white/25 rounded-full mb-1" />
-            <div className="w-12 h-1.5 bg-white/12 rounded-full" />
-          </div>
-          <div className="w-10 h-2 bg-white/20 rounded-full" />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function AppPhone({
-  screen,
-  colorFrom,
-  colorTo,
-  glowColor,
-  rotate = 0,
-  scale = 1,
-  zIndex = 0,
-}: {
-  screen: React.ReactNode;
-  colorFrom: string;
-  colorTo: string;
-  glowColor: string;
-  rotate?: number;
-  scale?: number;
-  zIndex?: number;
-}) {
-  return (
-    <div
-      className="relative flex-shrink-0"
-      style={{ transform: `rotate(${rotate}deg) scale(${scale})`, zIndex, transformOrigin: "bottom center" }}
-    >
-      <div
-        className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-60"
-        style={{ background: glowColor }}
-      />
-      <div
-        className="relative w-[200px] h-[420px] rounded-[34px] border border-white/15 bg-[#0A0A0A] overflow-hidden"
-        style={{ boxShadow: `0 0 60px ${glowColor}40` }}
-      >
-        {/* Dynamic status bar gradient */}
-        <div className="absolute top-0 inset-x-0 h-9 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.6)" }}>
-          <div className="w-16 h-4 rounded-b-xl" style={{ background: "rgba(0,0,0,0.8)" }} />
-        </div>
-        {screen}
-        {/* Home indicator */}
-        <div className="absolute bottom-2 inset-x-0 flex justify-center">
-          <div className="w-20 h-1 bg-white/20 rounded-full" />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Nav() {
   return (
@@ -401,14 +240,78 @@ function Nav() {
   );
 }
 
+// Single phone shell with a real screenshot inside
+function PhoneShell({
+  screenshot,
+  accent,
+  width,
+  height,
+  comingSoon = false,
+}: {
+  screenshot: string;
+  accent: string;
+  width: number;
+  height: number;
+  comingSoon?: boolean;
+}) {
+  const radius = Math.round(width * 0.13);
+  return (
+    <div className="relative flex-shrink-0" style={{ width }}>
+      {/* Glow */}
+      <div
+        className="absolute inset-0 blur-3xl rounded-full scale-75 opacity-50"
+        style={{ background: accent }}
+      />
+      {/* Shell */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          width,
+          height,
+          borderRadius: radius,
+          border: "2px solid rgba(255,255,255,0.14)",
+          background: "#000",
+          boxShadow: `0 0 60px ${accent}55`,
+        }}
+      >
+        {/* Screenshot fills entire frame — it already includes status bar */}
+        <Image
+          src={screenshot}
+          alt="App screenshot"
+          fill
+          className="object-cover object-top"
+          sizes={`${width}px`}
+        />
+
+        {/* Coming soon overlay */}
+        {comingSoon && (
+          <div className="absolute inset-0 bg-black/55 backdrop-blur-[3px] flex items-center justify-center z-10">
+            <div
+              className="px-4 py-2 rounded-full text-xs font-bold tracking-[0.15em] border"
+              style={{ background: `${accent}25`, borderColor: `${accent}70`, color: accent }}
+            >
+              COMING SOON
+            </div>
+          </div>
+        )}
+
+        {/* Home indicator on top of screenshot */}
+        <div className="absolute bottom-2 inset-x-0 z-10 flex justify-center">
+          <div className="h-1 rounded-full bg-white/30" style={{ width: Math.round(width * 0.35) }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HeroSection() {
+  const [max, wardrobe, dog] = projects;
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center bg-dot-grid overflow-hidden px-6 py-24">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_40%,rgba(123,47,255,0.1),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_40%,rgba(123,47,255,0.08),transparent)]" />
 
-      {/* Copy — centered */}
-      <div className="relative z-10 flex flex-col items-center text-center gap-5 mb-16">
+      {/* Copy */}
+      <div className="relative z-10 flex flex-col items-center text-center gap-5 mb-28">
         <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#7B2FFF]">
           Mobile-First. World-Class.
         </span>
@@ -416,8 +319,7 @@ function HeroSection() {
           We Build Apps <span className="text-gradient-accent">People</span> Actually Use.
         </h1>
         <p className="text-lg text-zinc-400 max-w-lg leading-relaxed">
-          Mapp Studio crafts iOS, Android, and cross-platform experiences that drive
-          engagement, retention, and real-world results.
+          Mapp Studio crafts iOS experiences that drive engagement, retention, and real-world results.
         </p>
         <div className="flex flex-wrap gap-4 justify-center pt-1">
           <a
@@ -439,73 +341,216 @@ function HeroSection() {
       </div>
 
       {/* Three phones — fanned */}
-      <div className="relative z-10 flex items-end justify-center gap-0" style={{ height: "460px" }}>
-        {/* Left phone — Pulse */}
-        <div className="relative" style={{ transform: "rotate(-10deg) translateX(30px)", zIndex: 1 }}>
-          <div className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-50" style={{ background: "#7B2FFF" }} />
-          <div
-            className="relative w-[185px] h-[390px] rounded-[32px] border border-white/10 bg-[#0A0A0A] overflow-hidden"
-            style={{ boxShadow: "0 0 50px rgba(123,47,255,0.3)" }}
-          >
-            <div className="absolute top-0 inset-x-0 h-8 bg-black/60 flex items-center justify-center">
-              <div className="w-14 h-3.5 bg-black/80 rounded-b-xl" />
+      <div className="relative z-10 flex items-end justify-center" style={{ height: "480px", gap: 0 }}>
+
+        {/* Left — Wardrobe AI */}
+        <div style={{ transform: "rotate(-10deg) translateX(32px) translateY(10px)", zIndex: 1 }}>
+          <PhoneShell screenshot={wardrobe.screenshot} accent={wardrobe.accent} width={185} height={390} />
+          <div className="mt-3 flex flex-col items-center gap-0.5">
+            <div className="flex items-center gap-1.5">
+              {wardrobe.icon && (
+                <div className="w-5 h-5 rounded-md overflow-hidden flex-shrink-0">
+                  <Image src={wardrobe.icon} alt={wardrobe.name} width={20} height={20} className="object-cover" />
+                </div>
+              )}
+              <span className="text-white/75 text-sm font-semibold">{wardrobe.subtitle}</span>
             </div>
-            <PulseScreen />
-            <div className="absolute bottom-2 inset-x-0 flex justify-center">
-              <div className="w-16 h-1 bg-white/20 rounded-full" />
-            </div>
-          </div>
-          {/* App label */}
-          <div className="mt-3 flex flex-col items-center gap-1">
-            <span className="text-white/80 text-sm font-semibold">Pulse</span>
-            <span className="text-zinc-600 text-xs">Health & Fitness</span>
+            <span className="text-zinc-600 text-xs">{wardrobe.category}</span>
           </div>
         </div>
 
-        {/* Center phone — Orbit (featured, largest) */}
-        <div className="relative" style={{ zIndex: 3 }}>
-          <div className="absolute inset-0 blur-3xl rounded-full scale-90 opacity-60" style={{ background: "#FF2D78" }} />
-          <div
-            className="relative w-[215px] h-[450px] rounded-[38px] border-2 border-white/15 bg-[#0A0A0A] overflow-hidden"
-            style={{ boxShadow: "0 0 80px rgba(255,45,120,0.25), 0 0 0 1px rgba(255,255,255,0.06)" }}
-          >
-            <div className="absolute top-0 inset-x-0 h-9 bg-black/60 flex items-center justify-center">
-              <div className="w-16 h-4 bg-black/80 rounded-b-xl" />
+        {/* Center — MAX AI (featured) */}
+        <div style={{ zIndex: 3 }}>
+          <div className="relative">
+            <div
+              className="absolute -top-3 left-1/2 -translate-x-1/2 text-white text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10"
+              style={{ background: max.accent }}
+            >
+              #1 App
             </div>
-            <OrbitScreen />
-            <div className="absolute bottom-2 inset-x-0 flex justify-center">
-              <div className="w-20 h-1 bg-white/25 rounded-full" />
+            <PhoneShell screenshot={max.screenshot} accent={max.accent} width={220} height={460} />
+          </div>
+          <div className="mt-3 flex flex-col items-center gap-0.5">
+            <div className="flex items-center gap-1.5">
+              {max.icon && (
+                <div className="w-5 h-5 rounded-md overflow-hidden flex-shrink-0">
+                  <Image src={max.icon} alt={max.name} width={20} height={20} className="object-cover" />
+                </div>
+              )}
+              <span className="text-white font-semibold">{max.subtitle}</span>
             </div>
-          </div>
-          {/* Featured badge */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FF2D78] text-white text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
-            Featured
-          </div>
-          <div className="mt-3 flex flex-col items-center gap-1">
-            <span className="text-white font-semibold">Orbit</span>
-            <span className="text-zinc-500 text-xs">Social Discovery</span>
+            <span className="text-zinc-500 text-xs">{max.category}</span>
           </div>
         </div>
 
-        {/* Right phone — Vault */}
-        <div className="relative" style={{ transform: "rotate(10deg) translateX(-30px)", zIndex: 1 }}>
-          <div className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-50" style={{ background: "#00C896" }} />
-          <div
-            className="relative w-[185px] h-[390px] rounded-[32px] border border-white/10 bg-[#0A0A0A] overflow-hidden"
-            style={{ boxShadow: "0 0 50px rgba(0,200,150,0.25)" }}
-          >
-            <div className="absolute top-0 inset-x-0 h-8 bg-black/60 flex items-center justify-center">
-              <div className="w-14 h-3.5 bg-black/80 rounded-b-xl" />
+        {/* Right — Dog Translator (coming soon) */}
+        <div style={{ transform: "rotate(10deg) translateX(-32px) translateY(10px)", zIndex: 1 }}>
+          <PhoneShell screenshot={dog.screenshot} accent={dog.accent} width={185} height={390} comingSoon={!dog.released} />
+          <div className="mt-3 flex flex-col items-center gap-0.5">
+            <span className="text-white/75 text-sm font-semibold">{dog.subtitle}</span>
+            <span className="text-zinc-600 text-xs">{dog.category}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PortfolioSection() {
+  const [max, wardrobe, dog] = projects;
+  return (
+    <section id="work" className="py-32 px-6 border-t border-white/[0.06]">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-16">
+          <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#7B2FFF]">
+            Our Apps
+          </span>
+          <h2 className="mt-4 text-5xl font-bold tracking-tighter text-white">
+            Apps That Perform
+          </h2>
+        </div>
+
+        {/* Featured: MAX AI */}
+        <div
+          className="group rounded-3xl border border-white/[0.06] overflow-hidden mb-5
+                     hover:border-white/15 transition-all duration-300"
+          style={{ background: "linear-gradient(135deg, rgba(221,0,0,0.07), rgba(255,102,102,0.03))" }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Text */}
+            <div className="flex flex-col justify-center p-10 lg:p-14">
+              {/* Icon + name */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 border border-white/10">
+                  <Image src={max.icon!} alt="MAX AI" width={56} height={56} className="object-cover" />
+                </div>
+                <div>
+                  <div className="text-white font-bold text-lg leading-tight">{max.name}</div>
+                  <div className="text-zinc-500 text-sm">{max.subtitle}</div>
+                </div>
+              </div>
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <span
+                  className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border"
+                  style={{ color: "#fff", borderColor: "rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)" }}
+                >
+                  <AppleIcon /> iOS
+                </span>
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full text-zinc-400 bg-white/5 border border-white/[0.06]">
+                  {max.category}
+                </span>
+                <span
+                  className="text-xs font-medium px-2.5 py-1 rounded-full border"
+                  style={{ color: max.accent, borderColor: `${max.accent}40`, background: `${max.accent}15` }}
+                >
+                  Available on App Store
+                </span>
+              </div>
+              <p className="text-zinc-400 leading-relaxed mb-8 text-lg max-w-sm">{max.description}</p>
+              <AppStoreBadge href={max.appStoreUrl!} />
             </div>
-            <VaultScreen />
-            <div className="absolute bottom-2 inset-x-0 flex justify-center">
-              <div className="w-16 h-1 bg-white/20 rounded-full" />
+            {/* Phone */}
+            <div
+              className="relative flex items-end justify-center pt-12 min-h-[420px] overflow-hidden"
+              style={{ background: "linear-gradient(160deg, rgba(221,0,0,0.12), rgba(255,102,102,0.05))" }}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_85%,rgba(221,0,0,0.12),transparent)]" />
+              <div className="relative" style={{ transform: "translateY(20px)" }}>
+                <PhoneShell screenshot={max.screenshot} accent={max.accent} width={240} height={500} />
+              </div>
             </div>
           </div>
-          <div className="mt-3 flex flex-col items-center gap-1">
-            <span className="text-white/80 text-sm font-semibold">Vault</span>
-            <span className="text-zinc-600 text-xs">Personal Finance</span>
-          </div>
+        </div>
+
+        {/* Wardrobe + Dog side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {[wardrobe, dog].map((project) => (
+            <div
+              key={project.name}
+              className="group rounded-3xl border border-white/[0.06] overflow-hidden
+                         hover:border-white/15 transition-all duration-300"
+              style={{ background: `linear-gradient(135deg, ${project.colorFrom}0A, ${project.colorTo}05)` }}
+            >
+              {/* Phone preview */}
+              <div
+                className="relative flex items-end justify-center overflow-hidden"
+                style={{
+                  background: `linear-gradient(160deg, ${project.colorFrom}14, ${project.colorTo}08)`,
+                  minHeight: "340px",
+                  paddingTop: "32px",
+                }}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_90%,rgba(0,0,0,0.3),transparent)]" />
+                <div
+                  className="absolute top-3 right-4 w-20 h-20 rounded-full blur-3xl opacity-35"
+                  style={{ background: project.colorFrom }}
+                />
+                <div className="relative" style={{ transform: "translateY(12px)" }}>
+                  <PhoneShell
+                    screenshot={project.screenshot}
+                    accent={project.accent}
+                    width={175}
+                    height={365}
+                    comingSoon={!project.released}
+                  />
+                </div>
+              </div>
+
+              {/* Text */}
+              <div className="p-7">
+                {/* Icon + name header */}
+                <div className="flex items-center gap-3 mb-4">
+                  {project.icon ? (
+                    <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 border border-white/10">
+                      <Image src={project.icon} alt={project.name} width={44} height={44} className="object-cover" />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-11 h-11 rounded-xl flex-shrink-0 border border-white/10 flex items-center justify-center text-lg"
+                      style={{ background: `${project.accent}20` }}
+                    >
+                      🐾
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-white font-bold leading-tight">{project.name}</div>
+                    <div className="text-zinc-500 text-xs">{project.subtitle}</div>
+                  </div>
+                </div>
+
+                {/* Badges */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span
+                    className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border"
+                    style={{ color: "#fff", borderColor: "rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)" }}
+                  >
+                    <AppleIcon /> iOS
+                  </span>
+                  <span
+                    className="text-xs font-medium px-2.5 py-1 rounded-full border"
+                    style={{
+                      color: project.released ? project.accent : project.accent,
+                      borderColor: `${project.accent}40`,
+                      background: `${project.accent}12`,
+                    }}
+                  >
+                    {project.tag}
+                  </span>
+                </div>
+
+                <p className="text-zinc-400 leading-relaxed text-sm mb-5">{project.description}</p>
+
+                {project.released ? (
+                  <AppStoreBadge href={project.appStoreUrl!} />
+                ) : (
+                  <span className="text-sm font-medium text-zinc-600 flex items-center gap-2">
+                    In development
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -544,147 +589,6 @@ function ServicesSection() {
   );
 }
 
-function PortfolioSection() {
-  const [pulse, orbit, vault] = projects;
-  return (
-    <section id="work" className="py-32 px-6 border-t border-white/[0.06]">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#7B2FFF]">
-            Selected Work
-          </span>
-          <h2 className="mt-4 text-5xl font-bold tracking-tighter text-white">
-            Apps That Perform
-          </h2>
-        </div>
-
-        {/* Featured row: Pulse */}
-        <div
-          className="group rounded-3xl border border-white/[0.06] overflow-hidden mb-5
-                     hover:border-white/15 transition-all duration-300"
-          style={{ background: `linear-gradient(135deg, rgba(123,47,255,0.08), rgba(0,191,255,0.04))` }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            {/* Text side */}
-            <div className="flex flex-col justify-center p-10 lg:p-14">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                  {pulse.category}
-                </span>
-                <span className="w-1 h-1 rounded-full bg-zinc-700" />
-                <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/5 text-zinc-400 border border-white/[0.06]">
-                  {pulse.platform}
-                </span>
-                <span className="text-xs font-medium px-2.5 py-1 rounded-full border text-[#7B2FFF] border-[#7B2FFF]/30 bg-[#7B2FFF]/10">
-                  {pulse.tag}
-                </span>
-              </div>
-              <h3 className="text-5xl font-bold tracking-tighter text-white mb-4">{pulse.name}</h3>
-              <p className="text-zinc-400 leading-relaxed mb-8 text-lg max-w-sm">{pulse.description}</p>
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white
-                           bg-white/8 border border-white/10 px-5 py-2.5 rounded-full w-fit
-                           hover:bg-white/15 hover:border-white/20 transition-all duration-200"
-              >
-                View Case Study <span>→</span>
-              </a>
-            </div>
-            {/* Phone side */}
-            <div
-              className="relative flex items-end justify-center pt-10 min-h-[400px] overflow-hidden"
-              style={{ background: `linear-gradient(135deg, rgba(123,47,255,0.12), rgba(0,191,255,0.06))` }}
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_80%,rgba(123,47,255,0.15),transparent)]" />
-              <div className="relative" style={{ transform: "translateY(20px)" }}>
-                <div className="absolute inset-0 blur-3xl opacity-50 rounded-full scale-75" style={{ background: "#7B2FFF" }} />
-                <div
-                  className="relative w-[230px] h-[480px] rounded-[40px] border border-white/15 bg-[#0A0A0A] overflow-hidden"
-                  style={{ boxShadow: "0 0 80px rgba(123,47,255,0.3)" }}
-                >
-                  <div className="absolute top-0 inset-x-0 h-9 bg-black/60 flex items-center justify-center">
-                    <div className="w-16 h-4 bg-black/80 rounded-b-xl" />
-                  </div>
-                  <PulseScreen />
-                  <div className="absolute bottom-2 inset-x-0 flex justify-center">
-                    <div className="w-20 h-1 bg-white/25 rounded-full" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Orbit + Vault side by side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {[orbit, vault].map((project) => (
-            <div
-              key={project.name}
-              className="group rounded-3xl border border-white/[0.06] overflow-hidden
-                         hover:border-white/15 transition-all duration-300"
-              style={{ background: `linear-gradient(135deg, ${project.colorFrom}0A, ${project.colorTo}05)` }}
-            >
-              {/* Phone preview area */}
-              <div
-                className="relative h-72 flex items-end justify-center overflow-hidden"
-                style={{ background: `linear-gradient(160deg, ${project.colorFrom}14, ${project.colorTo}08)` }}
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_80%,rgba(0,0,0,0.2),transparent)]" />
-                <div
-                  className="absolute top-3 right-3 w-16 h-16 rounded-full blur-2xl opacity-40"
-                  style={{ background: project.colorFrom }}
-                />
-                <div className="relative pb-0" style={{ transform: "translateY(16px)" }}>
-                  <div
-                    className="absolute inset-0 blur-2xl rounded-full scale-75 opacity-50"
-                    style={{ background: project.colorFrom }}
-                  />
-                  <div
-                    className="relative w-[175px] h-[360px] rounded-[30px] border border-white/12 bg-[#0A0A0A] overflow-hidden"
-                    style={{ boxShadow: `0 0 60px ${project.colorFrom}50` }}
-                  >
-                    <div className="absolute top-0 inset-x-0 h-8 bg-black/60 flex items-center justify-center">
-                      <div className="w-12 h-3.5 bg-black/80 rounded-b-xl" />
-                    </div>
-                    {project.name === "Orbit" ? <OrbitScreen /> : <VaultScreen />}
-                    <div className="absolute bottom-2 inset-x-0 flex justify-center">
-                      <div className="w-14 h-1 bg-white/20 rounded-full" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Text */}
-              <div className="p-7">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                    {project.category}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-zinc-700" />
-                  <span
-                    className="text-xs font-medium px-2 py-0.5 rounded-full border"
-                    style={{ color: project.accent, borderColor: `${project.accent}40`, background: `${project.accent}12` }}
-                  >
-                    {project.tag}
-                  </span>
-                </div>
-                <h3 className="text-3xl font-bold tracking-tighter text-white mb-2">{project.name}</h3>
-                <p className="text-zinc-400 leading-relaxed text-sm mb-5">{project.description}</p>
-                <a
-                  href="#"
-                  className="text-sm font-medium flex items-center gap-2 transition-colors duration-200"
-                  style={{ color: project.accent }}
-                >
-                  View Case Study <span>→</span>
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function AboutSection() {
   return (
     <section id="about" className="py-32 px-6 border-t border-white/[0.06]">
@@ -701,14 +605,13 @@ function AboutSection() {
           <p className="text-zinc-400 leading-relaxed mb-5">
             Mapp Studio was founded on a simple belief: great mobile apps require equal
             parts engineering rigor and design obsession. We&apos;re a focused team of
-            engineers, designers, and strategists who have shipped products used by
-            millions of people worldwide.
+            engineers, designers, and strategists who have shipped products loved by
+            hundreds of thousands of people worldwide.
           </p>
           <p className="text-zinc-400 leading-relaxed">
-            We work with founders, growth-stage startups, and established brands who
-            understand that their mobile app is their primary touchpoint with the world.
-            Every pixel, every interaction, every millisecond of load time matters to us
-            — because it matters to your users.
+            We specialize in AI-powered iOS apps — blending cutting-edge machine learning
+            with intuitive, polished interfaces. Every pixel, every interaction, every
+            millisecond of load time matters to us — because it matters to your users.
           </p>
         </div>
         <div className="flex flex-col gap-4 lg:pt-16">
@@ -746,7 +649,7 @@ function ContactSection() {
             scope, and fit.
           </p>
           <a
-            href="mailto:hello@mappstudio.com"
+            href="mailto:contact@mapp.studio"
             className="inline-flex bg-[#7B2FFF] text-white font-semibold px-8 py-4 rounded-full text-lg
                        hover:bg-[#9B4FFF] transition-colors duration-200"
             style={{ boxShadow: "0 0 50px rgba(123,47,255,0.25)" }}
@@ -798,7 +701,7 @@ function ContactSection() {
 
 export default function Home() {
   return (
-    <main className="bg-black text-white overflow-x-hidden">
+    <main className="bg-black text-white">
       <Nav />
       <HeroSection />
       <PortfolioSection />
