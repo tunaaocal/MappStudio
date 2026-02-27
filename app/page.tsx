@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -205,6 +207,10 @@ function HamburgerIcon() {
 
 // ─── Components ───────────────────────────────────────────────────────────────
 
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
 function Nav() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-black/80 border-b border-white/[0.06]">
@@ -216,22 +222,22 @@ function Nav() {
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link}>
-              <a
-                href={`#${link.toLowerCase()}`}
+              <button
+                onClick={() => scrollTo(link.toLowerCase())}
                 className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
               >
                 {link}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
-        <a
-          href="#contact"
+        <button
+          onClick={() => scrollTo("contact")}
           className="hidden md:flex bg-[#7B2FFF] text-white text-sm font-semibold px-5 py-2 rounded-full
                      hover:bg-[#9B4FFF] transition-colors duration-200"
         >
           Start a Project
-        </a>
+        </button>
         <button className="md:hidden text-white" aria-label="Menu">
           <HamburgerIcon />
         </button>
@@ -322,21 +328,21 @@ function HeroSection() {
           Mapp Studio crafts iOS experiences that drive engagement, retention, and real-world results.
         </p>
         <div className="flex flex-wrap gap-4 justify-center pt-1">
-          <a
-            href="#work"
+          <button
+            onClick={() => scrollTo("work")}
             className="bg-[#7B2FFF] text-white font-semibold px-7 py-3.5 rounded-full
                        hover:bg-[#9B4FFF] transition-colors duration-200"
             style={{ boxShadow: "0 0 40px rgba(123,47,255,0.3)" }}
           >
             See Our Work
-          </a>
-          <a
-            href="#contact"
+          </button>
+          <button
+            onClick={() => scrollTo("contact")}
             className="border border-white/20 text-white px-7 py-3.5 rounded-full
                        hover:border-white/50 hover:bg-white/5 transition-all duration-200"
           >
             Get in Touch
-          </a>
+          </button>
         </div>
       </div>
 
@@ -668,12 +674,12 @@ function ContactSection() {
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link}>
-                <a
-                  href={`#${link.toLowerCase()}`}
+                <button
+                  onClick={() => scrollTo(link.toLowerCase())}
                   className="text-sm text-zinc-500 hover:text-white transition-colors duration-200"
                 >
                   {link}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
