@@ -140,12 +140,31 @@ export default function MaxPrivacy() {
             </p>
           </SubSection>
 
+          <SubSection title="Advertising Attribution">
+            <p className="text-zinc-400 leading-relaxed mb-3">
+              We may use limited device identifiers and attribution technologies to measure the effectiveness of advertising campaigns and understand how users discover the App.
+            </p>
+            <p className="text-zinc-400 leading-relaxed mb-3">
+              This information may be processed through trusted attribution providers such as:
+            </p>
+            <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06] mb-3">
+              <p className="text-white font-medium">AppsFlyer Ltd.</p>
+            </div>
+            <p className="text-zinc-400 leading-relaxed mb-2">
+              Attribution data may include device identifiers and app installation or event data necessary to measure advertising campaign performance.
+            </p>
+            <p className="text-zinc-400 leading-relaxed">
+              This information is used only for advertising attribution and campaign performance measurement. It is not used to identify individual users or create personal advertising profiles.
+            </p>
+          </SubSection>
+
           <SubSection title="Device and Technical Information">
             <p className="text-zinc-400 leading-relaxed mb-3">
               We collect limited technical information necessary to operate and maintain the App, including:
             </p>
             <List items={[
               "Anonymous user identifiers (UUID)",
+              "Device identifiers used for attribution and analytics",
               "App version",
               "Device type",
               "Operating system version",
@@ -194,16 +213,11 @@ export default function MaxPrivacy() {
             "Apple Inc. — subscription and payment processing",
             "RevenueCat, Inc. — subscription management and entitlement tracking",
             "Supabase, Inc. — anonymous authentication, secure user identification, and backend services",
+            "AppsFlyer Ltd. — advertising attribution and campaign measurement",
             "Secure infrastructure providers — secure hosting, backend services, and data protection",
           ]} />
           <p className="text-zinc-400 leading-relaxed mt-4">
             These providers are contractually obligated to protect your data and use it only to provide services on our behalf.
-          </p>
-        </Section>
-
-        <Section title="No Tracking">
-          <p className="text-zinc-400 leading-relaxed">
-            Potential Analyzer AI does not track users across third-party apps or websites. We do not use advertising identifiers such as IDFA, and we do not share personal data with advertising networks, data brokers, or third-party advertisers.
           </p>
         </Section>
 
